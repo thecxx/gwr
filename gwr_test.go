@@ -10,22 +10,17 @@ import (
 func TestHandler(w http.ResponseWriter, r *http.Request) {
 	// Params
 	var params struct {
-		FromUri string `wr-p:"(v)=>{no-empty||参数校验失败}(Q.from_uri)"`
-		Age     int    `wr-p:"range(1,20)||参数校验失败"`
+		Age     int    `wr-param:"{ url.age : $0<10||20<$0, # : \"参数校验失败\"}"`
+		FromUri string `wr-param:"{ header.from_uri : /^[0-9]+$/.match($0), # : \"参数校验失败\"}"`
 	}
 	wr := gwr.Attach(w, r)
 	// Auto flush
 	defer wr.Flush()
 
-	err := wr.Import(&params, nil)
+	err := wr.Extract(&params, nil)
 	if err != nil {
 
 	}
-
-	wr.Remote().IsMobile()
-	wr.Form("name")
-	wr.Query("name")
-	wr.Param("name")
 
 }
 
