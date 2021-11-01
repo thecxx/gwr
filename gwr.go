@@ -27,3 +27,7 @@ func (g *Gwr) Flush() {
 
 	}
 }
+
+func Extract(r *http.Request, vptr interface{}, fun ErrorConstructor) error {
+	return nil
+}

@@ -1,4 +1,4 @@
-package gwr
+package complier
 
 import (
 	"bytes"
@@ -22,11 +22,6 @@ type TokenType uint8
 type Token struct {
 	Type  TokenType
 	Value string
-}
-
-type WrParamAst struct {
-	Kind     int
-	Children []*WrParamAst
 }
 
 const (
@@ -255,25 +250,4 @@ func (l *lexer) ParseString(firstK string) {
 			buf.WriteByte(ch)
 		}
 	}
-}
-
-type parser struct {
-	lex *lexer
-	ast interface{}
-}
-
-func Parse(lex *lexer) (*parser, error) {
-	return &parser{lex: lex}, nil
-}
-
-func (p *parser) GetAbstractSyntaxTree() interface{} {
-	return p.ast
-}
-
-type corkscrew struct {
-	opcodes interface{}
-}
-
-func (c *corkscrew) extract(vptr interface{}) {
-
 }
