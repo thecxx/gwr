@@ -5,25 +5,25 @@ import "testing"
 func TestEvaluate(t *testing.T) {
 	// !(10 + 2 * 4)
 	ast := &Ast{
-		Kind: AstKindNot,
-		Children: []*Ast{
+		kind: AstKindNot,
+		children: []*Ast{
 			{
-				Kind: AstKindPlus,
-				Children: []*Ast{
+				kind: AstKindPlus,
+				children: []*Ast{
 					{
-						Kind:  AstKindValue,
-						Value: 10,
+						kind:  AstKindValue,
+						value: 10,
 					},
 					{
-						Kind: AstKindMul,
-						Children: []*Ast{
+						kind: AstKindMul,
+						children: []*Ast{
 							{
-								Kind:  AstKindValue,
-								Value: 2,
+								kind:  AstKindValue,
+								value: 2,
 							},
 							{
-								Kind:  AstKindValue,
-								Value: 4,
+								kind:  AstKindValue,
+								value: 4,
 							},
 						},
 					},
